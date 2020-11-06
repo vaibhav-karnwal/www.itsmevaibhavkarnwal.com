@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta charset="UTF-8">
+	<title>www.vaibhavkarnwal.com</title>
+	<link rel="stylesheet" href="index.html">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+	<link rel="stylesheet" href="style-chatbot.css">
+	<style>
+		body{
+			background-color:#566D7E;
+			color:white;
+		}
+	</style>
+</head>
+<body>
+	<header>
+		<a href="#" class="logo">Portfolio</a>
+		<div class="toggle" onclick="toggleMenu();"></div>
+		<ul class="menu">
+			<li><a href="index.html#home" target="_parrent" onclick="toggleMenu();">Home</a></li>
+			<li><a href="index.html#about" target="_parrent" onclick="toggleMenu();">About</a></li>
+			<li><a href="index.html#projects" target="_parrent" onclick="toggleMenu();">Projects</a></li>
+			<li><a href="index.html#work" target="_parrent" onclick="toggleMenu();">Achievements</a></li>
+			<li><a href="index.html#video" target="_parrent" onclick="toggleMenu();">YouTube</a></li>
+			<li><a href="index.html#contact" target="_parrent" onclick="toggleMenu();">Contact</a></li>
+			<li><a href="https://www.facebook.com/apni.bhn.ki.parchayi.so.duri.banaye.rakhe/"><img src="./images/facebook.png" height="18px"></a></li>
+			<li><a href="https://www.linkedin.com/in/vaibhav-karnwal/"><img src="./images/linkedin.png"height="18px"></a></li>
+			<li><a href="https://www.instagram.com/vaibhavkarnwal2812/"><img src="./images/instagram.png" height="18px"></a></li>
+			<li><a href="https://twitter.com/algocreater"><img src="./images/twitter.png" height="18px"></a></li>
+			<li><a href="https://in.pinterest.com/vaibhavkarnwal2812/boards/"><img src="./images/pinterest.png" height="18px"></a></li>
+			<li><a href="https://github.com/vaibhav-karnwal"><img src="./images/github.png" height="18px"></a></li>
+		</ul>
+	</header>
+	<br>
+	<section class="about" id="about">
+		<div class="heading">
+			<h2 style="color:white">Server Client Chat Application with Java Socket Programming</h2>
+		</div>
+			<p>Chat Application establishes a connection between 2 or more systems connected over an internet or ad-hoc. This tool can be used for large scale communication and conferencing in an organization or campus of vast size, thus increasing the standard of co-operation. In addition it converts the campus concept of sockets to a user friendly environment.This software can have further potentials such as file transfer and voice chatting options that can be worked upon later.
+				<p>Usually, the server runs on a specific computer and has a socket that is bound to a specific port number. The server is just waiting, listening for a socket for a client to make a connection request.</p>
+					<br><p>On the client side: the client knows the hostname of the server machine that is running and the port number on which the server is listening. To make a connection request, the client tries to meet with the server on the server and port machine. The client also needs to identify himself to the server so that it binds to the local port number that will be used during this connection. This is usually given by the system.</p>
+					<br><p>If all goes well, the server accepts the connection. Once received, the server gets a new socket bound to the same local port and also has an endpoint that is set to the address and port of the client. A new socket is required so that it can continue to listen for socket connection requests while taking care of the needs of the connected client.</p>
+					<br><p>On the client side, if a connection is accepted, the socket is successfully made and the client can use the socket to communicate with the server. Clients and servers can communicate by writing or reading from the socket.</p>
+			<br>
+					<h3>Explanation</h3>
+					<br>
+					The following is the source code, explanation and results of the execution of this application.
+					server.java
+						On the server, first opening port 9999 and waiting for the connection.<br>
+						<br>
+						<h2>Client.java</h2>
+						<br>
+						<img src="./images/chat-client.PNG" class="center"><br>
+						<div class="heading">
+							<a href="https://github.com/vaibhav-karnwal/My-Chat-Application/tree/main/chatRoomClient/src" align="center">Source Code</a>		
+							<br>
+						</div>
+						<br>
+						You have to drag and drop these controls – TextArea, TextField, Button and Label.  TextArea is used to view the incoming messages and TextField is used to write the message.<br>
+						<br>
+						<h2>Server.java</h2>
+						<br>
+						<img src="./images/chat-server.PNG" class="center"><br>
+						<div class="heading">
+							<a href="https://github.com/vaibhav-karnwal/My-Chat-Application/tree/main/chatRoomServer/src" align="center">Source Code</a>		
+							<br>
+						</div>
+						<br>
+						Now that the coding part is there.  Open client.java and Server.java.  Enter the code part.<br>
+						<br>
+						<h2>Client.java</h2> <br>
+						<div class="code">
+							/*<br>
+&nbsp* To change this license header, choose License Headers in Project Properties.<br>
+&nbsp* To change this template file, choose Tools | Templates<br>
+&nbsp* and open the template in the editor.<br>
+&nbsp*/<br>
+<br>
+/**<br>
+&nbsp*<br>
+&nbsp* @author Er Vaibhav Karnwal<br>
+&nbsp*/<br>
+import java.io.*;<br>
+import java.net.*;<br>
+import java.awt.*;<br>
+import java.awt.event.*;<br>
+import javax.swing.*;<br>
+<br>
+public class Client extends JFrame{<br>
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp private JTextField userText;<br>
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp private JTextArea chatWindow;<br>
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp private ObjectOutputStream output;<br>
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp private ObjectInputStream input;<br>
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp private String message="";<br>
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp private String serverIP;<br>
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp private Socket connection;<br>
+        <br>
+        <br>
+    &nbsp&nbsp&nbsp&nbsp public Client(String host){<br>
+	&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp super("Client mofol");<br>
+      &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp  serverIP = host;<br>
+	&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp userText=new JTextField();<br>
+	&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp userText.setEditable(false);<br>
+	&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp userText.addActionListener(<br>
+	&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp	new ActionListener(){<br>
+	&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp		public void actionPerformed(ActionEvent event){<br>
+	&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp			sendData(event.getActionCommand());<br>
+	&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp			userText.setText("");<br>
+	&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp		}<br>
+	&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp	}<br>
+	&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp);<br>
+<br>
+	&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp add(userText, BorderLayout.NORTH);<br>
+	&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp chatWindow =new JTextArea();<br>
+	&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp add(new JScrollPane(chatWindow), BorderLayout.CENTER);<br>
+	&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp setSize(300,150);<br>
+	&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp setVisible(true);<br>
+    &nbsp&nbsp&nbsp&nbsp }<br>
+    &nbsp&nbsp&nbsp&nbsp public void startRunning(){<br>
+    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp    try{<br>
+    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp        connectToServer();<br>
+    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp        setupStreams();<br>
+    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp        whileChatting();<br>
+	&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp	}catch(EOFException eofException){<br>
+    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp        showMessage("\n Client terminated Connection !");<br>
+	&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp }catch(IOException ioException){<br>
+    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp        ioException.printStackTrace();<br>
+	&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp }finally{<br>
+    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp        closeCrap();<br>
+    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp    }<br>
+    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp}<br>
+    &nbsp&nbsp&nbsp&nbsp private void connectToServer() throws IOException{<br>
+	&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp showMessage("Attempting connection.... \n");<br>
+	&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp connection=new Socket(InetAddress.getByName(serverIP),6789);<br>
+    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp showMessage("connected to "+ connection.getInetAddress().getHostName());	<br>
+    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp }<br>
+    &nbsp&nbsp&nbsp&nbsp private void setupStreams() throws IOException{<br>
+	&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspoutput= new ObjectOutputStream(connection.getOutputStream());<br>
+	&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspoutput.flush();<br>
+    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp    input = new ObjectInputStream(connection.getInputStream());<br>
+	&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspshowMessage("\n You can type your message now! \n");<br>
+	&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp}<br>
+    <br>
+	&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp//while chatting with server<br>
+    <br>
+    &nbsp&nbsp&nbsp&nbsp private void whileChatting() throws IOException{<br>
+    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp    ableToType(true);<br>
+	&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp do{<br>
+    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp         try{<br>
+    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp           message=(String)input.readObject();<br>
+	&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp	showMessage("\n"+message);<br>
+    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp       }catch(ClassNotFoundException classNotFoundException){<br>
+    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp            showMessage("\nI dont know that object type!");<br>
+    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp        }<br>
+	&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp }while(!message.equals("SERVER - END"));<br>
+    &nbsp&nbsp&nbsp&nbsp }<br>
+    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp    //close streams and sockets after you are done chatting<br>
+    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp   private void closeCrap(){<br>
+    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp       showMessage("\n Closing crap down.....\n");<br>
+    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp       ableToType(false);<br>
+    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp        try{<br>
+    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp         output.close();<br>
+    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp        input.close();  <br>
+    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp        connection.close();<br>
+    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp       }catch(IOException ioException){<br>
+    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp          ioException.printStackTrace();<br>
+    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp      }<br>
+    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp  }<br>
+        <br>
+    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp    //send a message to client<br>
+    &nbsp&nbsp&nbsp&nbsp    private void sendData(String message){<br>
+    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp       try{<br>
+    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp           output.writeObject("CLIENT -"+ message);<br>
+    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp           output.flush();<br>
+    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp           showMessage("\nCLIENT -"+message);<br>
+    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp       }catch(IOException ioException){<br>
+    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp      chatWindow.append("\n something messed up sending message hoss!");<br>
+    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp       }<br>
+    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp    }<br>
+    &nbsp&nbsp&nbsp&nbsp    private void showMessage(final String m){<br>
+    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp      SwingUtilities.invokeLater(<br>
+    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp              new Runnable(){<br>
+    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp                   public void run(){<br>
+    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp                        chatWindow.append(m);<br>
+    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp                    }<br>
+    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp              }<br>
+    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp        );<br>
+    &nbsp&nbsp&nbsp&nbsp    }<br>
+    &nbsp&nbsp&nbsp&nbsp  <br>
+    &nbsp&nbsp&nbsp&nbsp    // gives permission to type crap into the text box<br>
+    &nbsp&nbsp&nbsp&nbsp    private void ableToType(final boolean tof){<br>
+    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp      SwingUtilities.invokeLater(<br>
+    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp              new Runnable(){<br>
+    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp                 public void run(){<br>
+    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp                     userText.setEditable(tof);<br>
+    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp                  }<br>
+    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp             }<br>
+    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp        );<br>
+    &nbsp&nbsp&nbsp&nbsp   }<br>
+}<br>
+
+						</div><br>
+						<h2>ClientTest.java</h2><br>
+						<div class="code">
+							/*
+&nbsp *&nbsp To change this license header, choose License Headers in Project Properties.<br>
+&nbsp *&nbsp To change this template file, choose Tools | Templates<br>
+&nbsp *&nbsp and open the template in the editor.<br>
+&nbsp */<br>
+<br>
+/**<br>
+&nbsp *<br>
+&nbsp * &nbsp@author Er Vaibhav Karnwal<br>
+&nbsp */<br>
+import javax.swing.JFrame;<br>
+<br>
+public class ClientTest {<br>
+    &nbsp&nbsp&nbsp&nbsp public static void main(String[] args){<br>
+    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp    Client charlie;<br>
+    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp    charlie = new Client("127.0.0.1");<br>
+    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp    charlie.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);<br>
+    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp    charlie.startRunning();<br>
+    &nbsp&nbsp&nbsp&nbsp }<br>
+}<br>
+						</div><br>
+						<h2>Server.java</h2>  <br>
+						<div class="code">
+							/*<br>
+&nbsp* To change this license header, choose License Headers in Project Properties.<br>
+&nbsp* To change this template file, choose Tools | Templates<br>
+&nbsp* and open the template in the editor.<br>
+&nbsp*/<br>
+<br>
+/**<br>
+&nbsp*<br>
+&nbsp* @author Er Vaibhav Karnwal<br>
+&nbsp*/<br>
+import java.io.*;<br>
+import java.net.*;<br>
+import java.awt.*;<br>
+import java.awt.event.*;<br>
+import javax.swing.*;<br>
+<br>
+public class Server extends JFrame {<br>
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp private JTextField userText;<br>
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp private JTextArea chatWindow;<br>
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp private ObjectOutputStream output;<br>
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp private ObjectInputStream input;<br>
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp private ServerSocket server;<br>
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp private Socket connection;<br>
+        <br>
+        <br>
+    &nbsp&nbsp&nbsp&nbsp public Server(){<br>
+	&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp super("Buckys Instant Messsenger");<br>
+	&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp userText=new JTextField();<br>
+	&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp userText.setEditable(false);<br>
+	&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp userText.addActionListener(<br>
+	&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp	new ActionListener(){<br>
+	&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp		public void actionPerformed(ActionEvent event){<br>
+	&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp			sendMessage(event.getActionCommand());<br>
+	&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp			userText.setText("");<br>
+	&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp		}<br>
+	&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp	}<br>
+	&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp);<br>
+<br>
+	&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp add(userText, BorderLayout.NORTH);<br>
+	&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp chatWindow =new JTextArea();<br>
+	&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp add(new JScrollPane(chatWindow), BorderLayout.CENTER);<br>
+	&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp setSize(300,150);<br>
+	&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp setVisible(true);<br>
+    &nbsp&nbsp&nbsp&nbsp }<br>
+    &nbsp&nbsp&nbsp&nbsp public void startRunning(){<br>
+    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp    try{<br>
+    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp    server= new ServerSocket(6789, 100);<br>
+	&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp    while(true){<br>
+	&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp    try{<br>
+	&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp	waitForConnection();<br>
+    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp        setupStreams();<br>
+    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp        whileChatting();<br>
+	&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp	}catch(EOFException eofException){<br>
+    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp        showMessage("\n Server ended the Connection !");<br>
+	&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp }finally{<br>
+    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp        closeCrap();<br>
+    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp    }<br>
+    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp }<br>
+	&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp }catch(IOException ioException){<br>
+    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp        ioException.printStackTrace();<br>
+	&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp }<br>
+	&nbsp&nbsp&nbsp&nbsp }<br>
+    &nbsp&nbsp&nbsp&nbsp private void connectToServer() throws IOException{<br>
+	&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp showMessage("Waiting for someone to connect... \n");<br>
+	&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp connection=server.accept();<br>
+    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp showMessage("Now connected to "+ connection.getInetAddress().getHostName());	<br>
+    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp }<br>
+    &nbsp&nbsp&nbsp&nbsp private void setupStreams() throws IOException{<br>
+	&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspoutput= new ObjectOutputStream(connection.getOutputStream());<br>
+	&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspoutput.flush();<br>
+    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp    input = new ObjectInputStream(connection.getInputStream());<br>
+	&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspshowMessage("\n Stream are now Setup! \n");<br>
+	&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp}<br>
+    <br>
+    <br>
+    &nbsp&nbsp&nbsp&nbsp private void whileChatting() throws IOException{<br>
+	&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp    String message="You are now connected !";<br>
+	&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp    sendMessage(message);<br>
+    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp    ableToType(true);<br>
+	&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp do{<br>
+    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp         try{<br>
+    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp           message=(String)input.readObject();<br>
+	&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp	showMessage("\n"+message);<br>
+    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp       }catch(ClassNotFoundException classNotFoundException){<br>
+    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp            showMessage("\n idk wtf that User Sent!");<br>
+    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp        }<br>
+	&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp }while(!message.equals("CLIENT - END"));<br>
+    &nbsp&nbsp&nbsp&nbsp }<br>
+    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp    //close streams and sockets after you are done chatting<br>
+    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp   private void closeCrap(){<br>
+    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp       showMessage("\n Closing connections.....\n");<br>
+    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp       ableToType(false);<br>
+    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp        try{<br>
+    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp         output.close();<br>
+    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp        input.close();  <br>
+    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp        connection.close();<br>
+    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp       }catch(IOException ioException){<br>
+    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp          ioException.printStackTrace();<br>
+    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp      }<br>
+    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp  }<br>
+        <br>
+    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp    //send a message to client<br>
+    &nbsp&nbsp&nbsp&nbsp    private void sendMessage(String message){<br>
+    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp       try{<br>
+    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp           output.writeObject("SERVER -"+ message);<br>
+    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp           output.flush();<br>
+    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp           showMessage("\nSERVER -"+message);<br>
+    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp       }catch(IOException ioException){<br>
+    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp      chatWindow.append("\n ERROR: DUDE I CANT SEND THAT MESSAGE");<br>
+    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp       }<br>
+    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp    }<br>
+    &nbsp&nbsp&nbsp&nbsp    private void showMessage(final String m){<br>
+    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp      SwingUtilities.invokeLater(<br>
+    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp              new Runnable(){<br>
+    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp                   public void run(){<br>
+    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp                        chatWindow.append(text);<br>
+    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp                    }<br>
+    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp              }<br>
+    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp        );<br>
+    &nbsp&nbsp&nbsp&nbsp    }<br>
+    &nbsp&nbsp&nbsp&nbsp  <br>
+    &nbsp&nbsp&nbsp&nbsp    // gives permission to type crap into the text box<br>
+    &nbsp&nbsp&nbsp&nbsp    private void ableToType(final boolean tof){<br>
+    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp      SwingUtilities.invokeLater(<br>
+    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp              new Runnable(){<br>
+    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp                 public void run(){<br>
+    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp                     userText.setEditable(tof);<br>
+    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp                  }<br>
+    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp             }<br>
+    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp        );<br>
+    &nbsp&nbsp&nbsp&nbsp   }<br>
+}<br>
+
+						</div><br>
+						<h2>ServerTest.java</h2>  
+						<br>
+						<div class="code">
+							/*
+&nbsp *&nbsp To change this license header, choose License Headers in Project Properties.<br>
+&nbsp *&nbsp To change this template file, choose Tools | Templates<br>
+&nbsp *&nbsp and open the template in the editor.<br>
+&nbsp */<br>
+<br>
+/**<br>
+&nbsp *<br>
+&nbsp * &nbsp@author Er Vaibhav Karnwal<br>
+&nbsp */<br>
+import javax.swing.JFrame;<br>
+<br>
+public class ServerTest {<br>
+    &nbsp&nbsp&nbsp&nbsp public static void main(String[] args){<br>
+    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp    Server sally=new Server();<br>
+    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp    sally.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);<br>
+    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp    sally.startRunning();<br>
+    &nbsp&nbsp&nbsp&nbsp }<br>
+}<br>
+						</div>
+						<br>
+						<br>
+<h2>Output</h2>
+<br>
+	<img src="./images/chat.PNG" class="center"><br>
+<br>
+I hope you like it.  Thank you for reading.  Have a good day..<br>
+<br>
+Thanks for reading!!!<br>
+
+ </p></div>
+		</div>
+	</section>
+	<section class="contact" id="contact">
+		<div class="heading white">
+			<h2>Contact Me</h2>
+		</div>
+		<div class="content">
+			<div class="contactInfo">
+				<h3>Contact Info</h3>
+				<div class="contactInfoBx">
+					<div class="box">
+						<div class="icon">
+							<i class="fa fa-map-marker"></i>
+						</div>
+						<div class="text">
+							<h3>Address</h3>
+							<p>H.No 301 Angeera Nagar Near<br>Parag Dugdh Sangh Ring Road,<br>Bijnor, Uttar Pradesh,<br>246701</p>
+						</div>
+					</div>
+					<div class="box">
+						<div class="icon">
+							<i class="fa fa-phone"></i>
+						</div>
+						<div class="text">
+							<h3>Phone</h3>
+							<p>9997243157</p>
+						</div>
+					</div>
+					<div class="box">
+						<div class="icon">
+							<i class="fa fa-envelope-o"></i>
+						</div>
+						<div class="text">
+							<h3>Email</h3>
+							<p>vaibhavkarnwal2812@gmail</p>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="formBx">
+				<form>
+					<h3>Message Me</h3>
+					<input type="text" name="" placeholder="Full Name">
+					<input type="email" name="" placeholder="Email">
+					<textarea placeholder="Your Message"></textarea>
+					<input type="submit" value="Send">
+				</form>
+			</div>
+		</div>
+	</section>
+	<div class="copyright">
+		<p>Copyright @ 2020 Vaibhav-Karnwal-Creation.com All Right Reserved.you don't </p>
+	</div>
+	<script type="text/javascript">
+		window.addEventListener('scroll',function(){
+		var header = document.querySelector('header');
+		header.classList.toggle('sticky',window.scrollY > 0);
+		});
+		
+		function toggleMenu(){
+		var menuToggle=document.querySelector('.toggle');
+		var menu=document.querySelector('.menu');
+		menuToggle.classList.toggle('active');
+		menu.classList.toggle('active');
+		}
+	</script>
+</body>
+</html>
